@@ -3,8 +3,8 @@
 @import "./partials/clearfix";
 // Variables
 $dark-color: black;
-$light-color: orange;
-$bright-color: cornflowerblue;
+$light-color: yellow;
+$bright-color: pink;
 $padding: 20px;
 // Media Query Ranges
 // Mixins
@@ -12,6 +12,14 @@ $padding: 20px;
   font-size: $block_font_size;
   color: $block_font_color;
 }
+
+@mixin each($num) {
+  &:nth-child(#{$num}n) {
+    @content
+  }
+}
+
+
 
 // Styles
 body{
@@ -21,16 +29,21 @@ body{
 
 @media screen and (min-width: 0px){
   background-color: $dark-color;
-  @include block_font(30px , $light-color);
+  @include block_font(35px , $light-color);
+  li:nth-child(even) { background-color: $light-color};
+  li:nth-child(even) { color: $bright-color};
 }
 @media screen and (min-width: 600px){
   background-color: $light-color;
   @include block_font(40px , $bright-color);
-
+  li:nth-child(even) { background-color: $bright-color};
+  li:nth-child(even) { color: $dark-color};
 }
  @media screen and (min-width: 900px){
    background-color: $bright-color;
-   @include block_font(50px, $dark-color);
+   @include block_font(60px, $dark_color);
+    li:nth-child(even) { background-color: $dark-color};
+    li:nth-child(even) { color: $light-color};
   }
 }
 
@@ -40,7 +53,21 @@ h1, h2, h3, h4{
 
 
 h1{
-  padding: 20px;
+  @media screen and (min-width:0px){
+    @include block_font(40px, $bright-color);
+    padding: 50px;
+  }
+
+   @media screen and (min-width:600px){
+    @include block_font(55px, $dark-color);
+    padding: 50px;
+  }
+
+   @media screen and (min-width:900px){
+    @include block_font(60px, $light-color);
+    padding: 50px;
+  }
+
 }
 
 h2{
@@ -52,20 +79,35 @@ h2{
   max-width:350px;
   margin:auto;
   display: block;
+
+  @media screen and (min-width: 600px){
+    //background-color: blue;
+    max-width: 500px;
+  }
+  @media screen and (min-width: 900px){
+    max-width: 600px;
+  }
+
 }
 
 .block_family li{
   @media screen and (min-width: 0px){
     background-color: $bright-color;
+    //margin: auto;
     // margin: 10px
   }
   @media screen and (min-width: 600px){
-    background-color: white;
+    background-color: black;
     display: inline-block;
+    padding: 20px;
+    max-width: 600px;
+
+
   }
   @media screen and (min-width: 900px){
-    background-color: pink;
+    background-color: $light-color;
     display: inline-block;
+    //li:nth-child(even) { color: $light-color};
   }
   background-color: green;
   margin-bottom: 20px;
